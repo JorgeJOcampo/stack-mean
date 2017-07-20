@@ -5,11 +5,11 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+var user_routes = require('./routes/user');
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.get('/pruebas', (res, req) => {
-    req.status(200).send({message:'Bienvenido al curso MEAN'});
-});
+app.use('/api', user_routes);
 
 module.exports = app;
