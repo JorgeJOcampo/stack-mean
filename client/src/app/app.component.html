@@ -1,0 +1,50 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<div *ngIf="identity;else other_content">
+  <p>Estás logueado</p>
+</div>
+<ng-template #other_content>
+  <div class="container" style="text-align:center">
+    <div class="row">
+      <div class="col">
+          <h1>
+              Welcome to {{ title }}!
+          </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <h1>Identificate</h1>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col">
+          <p>
+            <label for="">Correo:</label>
+            <input type="email" #email="ngModel" name="email" [(ngModel)]="user.email" class="text form-control" required>
+            <span *ngIf="!email.valid && email.touched">
+              <p>el email es obligatorio</p>
+            </span>
+          </p>
+          <p>
+            <label for="">Contraseña:</label>
+            <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="text form-control" required>
+          </p>
+          <input type="submit" value="Entrar" class="btn btn-primary">
+        </form>
+      </div>
+      <div class="col-6">
+        <h1>Registrate</h1>
+        <form action="" class="col">
+          <p>
+            <label for="">Correo:</label>
+            <input type="text" class="text form-control" required>
+          </p>
+          <p>
+            <label for="">Contraseña:</label>
+            <input type="password" class="text form-control" required>
+          </p>
+          <input type="submit" value="Registrarse" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
