@@ -61,7 +61,7 @@ typings/
 .next
 .idea/misc.xml
 package-lock.json
-.idea/contacts-search.iml
+.idea/stack-mean.iml
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
