@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var user_routes = require('./routes/user');
-var artist_routes = require('./routes/artist');}
+var artist_routes = require('./routes/artist');
 var album_routes = require('./routes/album');
 
 app.use(bodyParser.urlencoded({extended:false}));

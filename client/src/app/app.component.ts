@@ -10,7 +10,7 @@ import {User} from './models/user';
 })
 
 export class AppComponent implements OnInit{
-  public title = 'MUSIFY';
+  public title = 'Optima Navegacion';
   public user: User;
   public identity;
   public token;
