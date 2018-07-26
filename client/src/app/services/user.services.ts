@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
 import { map } from 'rxjs/operators';
+import { User } from '../models/user';
+import { Login } from '../models/login';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,12 +27,12 @@ export class UserService {
         let json = JSON.stringify(user_to_login);
         let params = json;
 
-        return this.http.post(this.url + '/login', params, httpOptions);
+        return this.http.post<Login>(this.url + '/login', params, httpOptions);
     }
 
     register(user_to_register){
         let params = user_to_register;
-        return this.http.post(this.url + '/register', params, httpOptions);
+        return this.http.post<Login>(this.url + '/register', params, httpOptions);
     }
 
     getIdentity() {

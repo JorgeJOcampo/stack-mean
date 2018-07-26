@@ -31,10 +31,12 @@ export class AppComponent implements OnInit {
   public onSubmit() {
     this._userService.signup(this.user).subscribe(
       response => {
+        console.log('response', response);
         this.identity = response.user;
         localStorage.setItem('identity', this.identity);
         this._userService.signup(this.user, 'true').subscribe(
           response => {
+            console.log('response', response);
             this.token = response.token;
             localStorage.setItem('token', this.token);
             this.user = new User('', '', '', '', 'ROLE_USER', '');
