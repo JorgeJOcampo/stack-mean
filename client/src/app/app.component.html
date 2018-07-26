@@ -16,6 +16,11 @@
     <div class="row">
       <div class="col-6">
         <h1>Identificate</h1>
+        <div *ngIf="errorMessage">
+          <div class="alert alert-danger" role="alert">
+            {{errorMessage}}
+          </div>
+        </div>
         <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col">
           <p>
             <label for="">Correo:</label>

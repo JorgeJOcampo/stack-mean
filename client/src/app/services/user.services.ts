@@ -23,6 +23,6 @@ export class UserService{
     let json = JSON.stringify(user_to_login);
      let params = json;
      
-     return this.http.post(this.url+'login', params, httpOptions);
+     return this.http.post(this.url+'/login', params, httpOptions);
  }
 }

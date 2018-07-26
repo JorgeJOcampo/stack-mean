@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   public user: User;
   public identity;
   public token;
+  public errorMessage;
   
   constructor(private _userService: UserService){
     this.user = new User('','','','','ROLE_USER','');
@@ -25,6 +26,23 @@ export class AppComponent implements OnInit{
   }
 
   public onSubmit(){
-    console.log(this.user);
+    this._userService.signup(this.user).subscribe(
+      response => {
+        this.identity = response.user;
+        this._userService.signup(this.user, 'true').subscribe(
+          response => {
+            this.token = response.token;
+            console.log(this.identity);
+            console.log(this.token);
+          }, error => {
+            this.errorMessage = error.message;
+            console.log(error);
+          }
+        )
+      }, error => {
+        this.errorMessage = error.message;
+        console.log(error);
+      }
+    );
   }
 }
