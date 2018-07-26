@@ -41,14 +41,19 @@
       </div>
       <div class="col-6">
         <h1>Registrate</h1>
-        <form action="" class="col">
+        <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col">
+          <div *ngIf="alertRegister">
+            <div class="alert alert-success" role="alert">
+              {{alertRegister}}
+            </div>
+          </div>
           <p>
             <label for="">Correo:</label>
-            <input type="text" class="text form-control" required>
+            <input type="text" #name="ngModel" name="email" [(ngModel)]="user_register.email" class="text form-control" required>
           </p>
           <p>
             <label for="">Contraseña:</label>
-            <input type="password" class="text form-control" required>
+            <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" class="text form-control" required>
           </p>
           <input type="submit" value="Registrarse" class="btn btn-primary">
         </form>

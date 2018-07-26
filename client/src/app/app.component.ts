@@ -12,12 +12,15 @@ import { User } from './models/user';
 export class AppComponent implements OnInit {
   public title = 'Optima Navegacion';
   public user: User;
+  public user_register: User;
   public identity;
   public token;
   public errorMessage;
+  public alertRegister;
 
   constructor(private _userService: UserService) {
     this.user = new User('', '', '', '', 'ROLE_USER', '');
+    this.user_register = new User('', '', '', '', 'ROLE_USER', '');
   }
 
   ngOnInit() {
@@ -34,6 +37,7 @@ export class AppComponent implements OnInit {
           response => {
             this.token = response.token;
             localStorage.setItem('token', this.token);
+            this.user = new User('', '', '', '', 'ROLE_USER', '');
           }, error => {
             this.errorMessage = error.message;
             console.log(error);
@@ -46,7 +50,21 @@ export class AppComponent implements OnInit {
     );
   }
 
-  logout(){
+  onSubmitRegister() {
+    this._userService.register(this.user_register).subscribe(
+      response => {
+        let user = response.user;
+        this.user_register = user;
+        this.alertRegister = 'Registro exitoso';
+        this.user_register = new User('', '', '', '', 'ROLE_USER', '');
+      }, error => {
+        this.alertRegister = error.message;
+        console.log(error);
+      }
+    );
+  }
+
+  logout() {
     localStorage.clear();
     this.identity = undefined;
     this.token = undefined;

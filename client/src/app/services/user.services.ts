@@ -28,8 +28,12 @@ export class UserService {
         return this.http.post(this.url + '/login', params, httpOptions);
     }
 
+    register(user_to_register){
+        let params = user_to_register;
+        return this.http.post(this.url + '/register', params, httpOptions);
+    }
+
     getIdentity() {
-        console.log(localStorage.getItem('identity'));
         let identity = localStorage.getItem('identity');
         if (identity != undefined) {
             this.identity = identity;
