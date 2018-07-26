@@ -60,7 +60,8 @@ export class AppComponent implements OnInit {
         this.alertRegister = 'Registro exitoso';
         this.user_register = new User('', '', '', '', 'ROLE_USER', '');
       }, error => {
-        this.alertRegister = error.message;
+        console.log('error', error);
+        this.alertRegister = error.error.message;
         console.log(error);
       }
     );
