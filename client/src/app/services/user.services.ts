@@ -2,27 +2,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GLOBAL } from './global';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
-export class UserService{
- public url: String
+export class UserService {
+    url: String
+    identity: string;
+    token: string;
 
- constructor(private http: HttpClient){
-     this.url = GLOBAL.url;
- }
+    constructor(private http: HttpClient) {
+        this.url = GLOBAL.url;
+    }
 
- signup(user_to_login, getHash = null){
-    if(getHash != null){
-        user_to_login.getHash = getHash;
-    } 
-    let json = JSON.stringify(user_to_login);
-     let params = json;
-     
-     return this.http.post(this.url+'/login', params, httpOptions);
- }
+    signup(user_to_login, getHash = null) {
+        if (getHash != null) {
+            user_to_login.getHash = getHash;
+        }
+        let json = JSON.stringify(user_to_login);
+        let params = json;
+
+        return this.http.post(this.url + '/login', params, httpOptions);
+    }
+
+    getIdentity() {
+        console.log(localStorage.getItem('identity'));
+        let identity = localStorage.getItem('identity');
+        if (identity != undefined) {
+            this.identity = identity;
+        }
+        return this.identity;
+    }
+
+    getToken() {
+        let token = localStorage.getItem('token');
+        if (token != undefined) {
+            this.token = token;
+        }
+        return this.token;
+    }
 }
