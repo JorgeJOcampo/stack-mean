@@ -35,6 +35,12 @@ export class UserService {
         return this.http.post<Login>(this.url + '/register', params, httpOptions);
     }
 
+    updateUser(user_to_update){
+        httpOptions.headers.append('Authorization', this.getToken());
+        let params = user_to_update;
+        return this.http.put<Login>(this.url + '/update-user/' + user_to_update._id, params, httpOptions);
+    }
+
     getIdentity() {
         let identity = localStorage.getItem('identity');
         if (identity != undefined) {

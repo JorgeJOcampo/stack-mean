@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
+import { UserEditComponent } from './component/user-edit.component';
  
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
     HttpClientModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    UserEditComponent
   ],
   bootstrap: [AppComponent]
 })
