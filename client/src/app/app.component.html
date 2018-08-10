@@ -21,6 +21,7 @@
   <nav id="user_logged">
     <span>
       Bienvenido {{identity.name}}
+      <router-outlet></router-outlet>
     </span>
     <span class="btn btn-warning" (click)="logout()">
       Cerrar sesión
