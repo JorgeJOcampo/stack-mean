@@ -76,17 +76,13 @@ function updateUser(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
-    User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
-      if(err){
+    User.findByIdAndUpdate(userId, update).then( user => {
+      res.status(200).send({user: user});
+    }).catch(
+      error => {
         res.status(500).send({message: 'Error al actualizar el usuario'});
-      }else{
-        if(!userUpdated){
-          res.status(404).send({message: 'No se pudo actualizar el usuario'});
-        }else{
-          res.status(200).send({user: userUpdated});
-        }
       }
-    });
+    )
 }
 
 function uploadImage(req, res){
