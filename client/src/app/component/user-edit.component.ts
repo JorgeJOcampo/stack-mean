@@ -13,13 +13,29 @@ export class UserEditComponent implements OnInit{
     user: User;
     identity;
     token;
+    alertUpdate: String;
 
     constructor(private _userService: UserService){
         this.titulo = 'Actualizar los datos';
+        this.identity = this._userService.getIdentity();
+        this.token = this._userService.getToken();
+        this.user = this.identity;
     }
 
     ngOnInit(){
         console.log('user-edit cargado');
+    }
+
+    onSubmit(){
+        this._userService.updateUser(this.user).subscribe(
+            response => {
+                this.user = response.user;
+                localStorage.setItem('identity', JSON.stringify(this.identity));
+            },error => {
+            this.alertUpdate = error.message;
+            console.log(error);
+          }
+        );
     }
 
 }

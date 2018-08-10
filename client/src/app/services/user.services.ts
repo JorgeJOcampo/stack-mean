@@ -36,24 +36,21 @@ export class UserService {
     }
 
     updateUser(user_to_update){
-        httpOptions.headers.append('Authorization', this.getToken());
+        // httpOptions.headers.append('Authorization', this.getToken());
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': this.getToken() })
+        };
         let params = user_to_update;
         return this.http.put<Login>(this.url + '/update-user/' + user_to_update._id, params, httpOptions);
     }
 
     getIdentity() {
-        let identity = localStorage.getItem('identity');
-        if (identity != undefined) {
-            this.identity = identity;
-        }
+        this.identity = JSON.parse(localStorage.getItem('identity')) || undefined;
         return this.identity;
     }
 
     getToken() {
-        let token = localStorage.getItem('token');
-        if (token != undefined) {
-            this.token = token;
-        }
+        this.token = localStorage.getItem('token') || undefined;
         return this.token;
     }
 }

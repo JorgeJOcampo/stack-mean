@@ -20,7 +20,7 @@
 
   <nav id="user_logged">
     <span>
-      Bienvenido {{identity.name}}
+      Bienvenido {{identity.name}} ({{identity.email}})
       <router-outlet></router-outlet>
     </span>
     <span class="btn btn-warning" (click)="logout()">

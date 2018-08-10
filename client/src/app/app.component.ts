@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
       response => {
         console.log('response', response);
         this.identity = response.user;
-        localStorage.setItem('identity', this.identity);
+        localStorage.setItem('identity', JSON.stringify(this.identity));
         this._userService.signup(this.user, 'true').subscribe(
           response => {
             console.log('response', response);
